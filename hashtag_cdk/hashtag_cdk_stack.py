@@ -367,7 +367,7 @@ class HashtagCdkWestStack(cdk.Stack):
                         action="getParameter",
                         parameters={"Name": parameterName},
                         region=region,
-                        physical_resource_id=PhysicalResourceId.of(parameterName+'-'+region+'v5')
+                        physical_resource_id=PhysicalResourceId.of(parameterName+'-'+region)
                     )
 
                 super().__init__(scope, name,
