@@ -9,6 +9,7 @@ from urllib.parse import urlencode
 def lambda_handler(event, context):
     secrets_client = boto3.client('secretsmanager')
     dynamodb = boto3.resource('dynamodb')
+    sns = boto3.client('sns')
     
     # Nunmber of hours back to query from Twitter API 
     QUERYTIME = 1
@@ -20,6 +21,9 @@ def lambda_handler(event, context):
     dtNow = dt.datetime.now(dt.timezone.utc) 
     start_time = (dtNow - dt.timedelta(hours=QUERYTIME)).isoformat()
 
+    # Grab the SNS Topic name from the Lambda's environment variable
+    sns_arn = os.environ['SNSTOPIC']
+
     # Grab DynamoDB table name from Lambda environment variable
     mytable = os.environ['TABLE']
     table = dynamodb.Table(mytable)
@@ -29,7 +33,7 @@ def lambda_handler(event, context):
 
     # Grab Twitter API Header token from Secrets Manager ARN in Lambda environment variable
     secret_json = json.loads(secrets_client.get_secret_value(SecretId=os.environ['KEY_ARN']).get('SecretString'))
-    auth_token = secret_json['Bearer']
+    auth_token = secret_json['prod/hashtag_cdk/twitter_api']
 
     next_token=""
     again=True
@@ -64,7 +68,16 @@ def lambda_handler(event, context):
         
         count = tweets_data['meta']['result_count']
         if count == 0:
+            print(tweets_data)
             print("No results returned")
+ 
+            print("Attempting to publish to SNS topic: " + sns_arn)
+            message =  "Completed run of Tweet Query Lambda Handler with the following results"
+            message += str(tweets_data)
+            # response = sns.publish (
+            # TargetArn = sns_arn,
+            # Message = json.dumps({'default': message}), MessageStructure = 'json')
+
             return
         else:
             print("Twitter API returned " + str(count) + " results.")

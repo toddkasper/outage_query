@@ -1,0 +1,10 @@
+{
+  "hosted-zone:account=743304922740:domainName=ak3.dev:region=us-west-2": {
+    "Id": "/hostedzone/Z01414983ORZ0ZY6RME42",
+    "Name": "ak3.dev."
+  },
+  "hosted-zone:account=743304922740:domainName=ak3.dev:region=us-east-1": {
+    "Id": "/hostedzone/Z01414983ORZ0ZY6RME42",
+    "Name": "ak3.dev."
+  }
+}

@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
+
 import os
-
 import aws_cdk as cdk
+from hashtag_cdk.hashtag_cdk_stack import HashtagCdkEastStack, HashtagCdkWestStack
 
-from hashtag_cdk.hashtag_cdk_stack import HashtagCdkStack
-
+env_east = cdk.Environment(account="743304922740", region="us-east-1")
+env_west = cdk.Environment(account="743304922740", region="us-west-2")
 
 app = cdk.App()
-HashtagCdkStack(app, "HashtagCdkStack")
+HashtagCdkEastStack(app, "EastStack", env=env_east)
+HashtagCdkWestStack(app, "WestStack", env=env_west)
 app.synth()

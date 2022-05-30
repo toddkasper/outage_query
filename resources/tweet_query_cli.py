@@ -6,12 +6,13 @@ import json
 from urllib.parse import urlencode
 
 def main():
-    load_dotenv(".env/.env")
+    load_dotenv("../.env/.env")
     auth_token = os.getenv('BEARER')
 
     # Nunmber of hours back to query from Twitter API 
     QUERYTIME = 168
     # Hashtag to search for
+    HASHTAG = "awsoutage"
     HASHTAG = "awsoutage"
     # Number of results to return, 100 max.  Need to use next_token to get more
     MAX_RESULTS = 100
@@ -52,6 +53,7 @@ def main():
         
         count = tweets_data['meta']['result_count']
         if count == 0:
+            print(tweets_data)
             print("No results returned")
             return
         else:

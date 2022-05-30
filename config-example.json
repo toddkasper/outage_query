@@ -1,0 +1,25 @@
+{
+  "DNS": {
+    "ZoneName": "example.com",
+    "APIBaseName": "api.example.com"
+  },
+  "SNSTopic": {
+    "EmailSubscription": "email@example.com",
+    "SubscriptionPhonenumber": "+10000000000"
+  },
+  "TwitterAPISecret": {
+    "APIkeyARN": "[ARN to Secret with Twitter API Bearer]"
+  },
+  "query_function": {
+    "TimeoutDuration": "60"
+  },
+  "analyzer_function": {
+    "TimeoutDuration": "60"
+  },
+  "frontend_function": {
+    "TimeoutDuration": "60"
+  },
+  "Amplify": {
+    "WebsiteDist": "./website-dist"
+  }
+}
