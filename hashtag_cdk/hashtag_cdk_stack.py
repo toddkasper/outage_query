@@ -1,22 +1,6 @@
-# from asyncio import SubprocessProtocol
-# from dataclasses import dataclass
-# from email.message import EmailMessage
-# from inspect import Parameter
-# from lib2to3.pgen2.token import STRING
-# from pickle import TRUE
-# from pyexpat import model
-# from queue import Empty
-# import string
-# from sys import api_version
-# from weakref import proxy
-# from wsgiref import headers
-# from xml.dom.minicompat import EmptyNodeList
-# from datetime import datetime
-# # from msilib.schema import Environment
 import aws_cdk as cdk
 import json
 from dotmap import DotMap
-# from os import path
 from constructs import Construct
 from aws_cdk.custom_resources import (
     AwsCustomResource,
